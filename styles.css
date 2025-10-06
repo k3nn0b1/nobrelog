@@ -1,0 +1,354 @@
+/* Variáveis de cores */
+:root {
+    --azul-principal: #0047AB;
+    --azul-claro: #4682B4;
+    --vermelho: #D22B2B;
+    --vermelho-hover: #B22222;
+    --branco: #FFFFFF;
+    --cinza-claro: #F5F5F5;
+    --cinza-medio: #E0E0E0;
+    --texto: #333333;
+}
+
+/* Reset e estilos gerais */
+* { 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--texto);
+    background-color: var(--branco);
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0px;
+}
+
+/* Header */
+header {
+    background-color: var(--azul-principal);
+    color: var(--branco);
+    padding: 1rem 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    text-align: center;
+    padding: 1rem 0;
+    border-radius: 12px;
+}
+
+.logo-img {
+    max-width: 120px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 20px;
+}
+
+/* Hero section */
+.hero {
+    background-color: var(--azul-claro);
+    color: var(--branco);
+    padding: 2rem 0;
+    text-align: center;
+}
+
+.hero h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Form section */
+.form-section {
+    padding: 1rem 0;
+    background-color: var(--cinza-claro);
+}
+
+form {
+    background-color: var(--branco);
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 1.2rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--azul-principal);
+}
+
+input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid var(--cinza-medio);
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--azul-principal);
+    box-shadow: 0 0 0 2px rgba(0, 71, 171, 0.2);
+}
+
+.btn-submit {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    background-color: var(--vermelho);
+    color: var(--branco);
+    border: none;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1.5rem;
+    text-transform: uppercase;
+}
+
+.btn-submit:hover {
+    background-color: var(--azul-principal);
+    transform: translateY(-2px);
+}
+
+.btn-submit:active {
+    transform: translateY(0);
+}
+
+/* Footer */
+footer {
+    background-color: var(--azul-principal);
+    color: var(--branco);
+    text-align: center;
+    padding: 1.5rem 0;
+    font-size: 0.9rem;
+}
+
+/* Animações */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.form-group {
+    animation: fadeIn 0.5s ease forwards;
+    opacity: 0;
+}
+
+.form-group:nth-child(1) { animation-delay: 0.1s; }
+.form-group:nth-child(2) { animation-delay: 0.2s; }
+.form-group:nth-child(3) { animation-delay: 0.3s; }
+.form-group:nth-child(4) { animation-delay: 0.4s; }
+.form-group:nth-child(5) { animation-delay: 0.5s; }
+.form-group:nth-child(6) { animation-delay: 0.6s; }
+.form-group:nth-child(7) { animation-delay: 0.7s; }
+.form-group:nth-child(8) { animation-delay: 0.8s; }
+
+.hero h2 {
+    animation: slideIn 0.8s ease forwards;
+}
+
+.hero p {
+    animation: slideIn 0.8s ease forwards;
+    animation-delay: 0.3s;
+    opacity: 0;
+}
+
+.btn-submit {
+    animation: pulse 2s infinite;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--azul-principal);
+    box-shadow: 0 0 0 2px rgba(0, 71, 171, 0.2);
+    transition: all 0.3s ease;
+}
+
+/* Media queries para responsividade */
+@media (min-width: 768px) {
+    .logo h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero h2 {
+        font-size: 2.2rem;
+    }
+    
+    form {
+        padding: 2rem;
+    }
+    
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+}
+
+@media (min-width: 992px) {
+    .hero {
+        padding: 3rem 0;
+    }
+    
+    .form-section {
+        padding: 3rem 0;
+    }
+}
+
+/* ===== Tipo de transporte (radio buttons) ===== */
+.transporte-group label {
+  color: var(--azul-principal);
+  font-weight: 500;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.radio-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.radio-options label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: var(--cinza-claro);
+  border: 1px solid var(--cinza-medio);
+  border-radius: 8px;
+  padding: 0.7rem 1rem;
+  cursor: pointer;
+  flex: 1;
+  justify-content: center;
+  transition: all 0.3s ease;
+  user-select: none;
+}
+
+.radio-options input[type="radio"] {
+  accent-color: var(--azul-principal);
+  transform: scale(1.2);
+}
+
+.radio-options label:hover {
+  background-color: var(--azul-principal);
+  color: var(--branco);
+  border-color: var(--azul-principal);
+}
+
+.radio-options input[type="radio"]:checked + span {
+  background-color: var(--azul-principal);
+  color: var(--branco);
+}
+
+/* Ícones opcionais */
+.radio-options label::before {
+  font-size: 1.2rem;
+}
+
+.radio-options label[for="moto"]::before {
+  content: "🏍️";
+}
+
+.radio-options label[for="carro"]::before {
+  content: "🚗";
+}
+
+.radio-options label[for="caminhao"]::before {
+  content: "🚚";
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+  .radio-options {
+    flex-direction: column;
+  }
+
+  .radio-options label {
+    justify-content: flex-start;
+  }
+}
+
+input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+select {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid var(--cinza-medio);
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  background-color: var(--branco);
+  color: var(--texto);
+  transition: all 0.3s ease;
+}
+
+select:focus {
+  outline: none;
+  border-color: var(--azul-principal);
+  box-shadow: 0 0 0 2px rgba(0, 71, 171, 0.2);
+}

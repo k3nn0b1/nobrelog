@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="NobreLog - Transportadora de confiança para suas cargas"
+    />
+    <meta name="theme-color" content="#0047AB" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="author" content="NobreLog" />
+    <meta
+      name="keywords"
+      content="transportadora, logística, frete, orçamento, transporte de cargas"
+    />
+    <title>NobreLog - Solicite seu orçamento</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="favicon.png" type="image/svg+xml" />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="logo">
+          <img src="favicon.png" alt="Nobre Logística" class="logo-img" />
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container">
+          <p>
+            Informe os dados da sua carga e receba o orçamento diretamente pelo
+            WhatsApp.
+          </p>
+        </div>
+      </section>
+
+      <section class="form-section">
+        <div class="container">
+          <form id="orcamento-form">
+            <div class="form-group">
+              <label for="peso">Peso da mercadoria (kg)</label>
+              <input
+                type="number"
+                id="peso"
+                name="peso"
+                placeholder="Ex: 30"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="quantidade">Quantidade de volumes</label>
+              <input
+                type="number"
+                id="quantidade"
+                name="quantidade"
+                placeholder="Ex: 2"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="valor">Valor da Nota Fiscal (R$)</label>
+              <input
+                type="text"
+                id="valor"
+                name="valor"
+                placeholder="Ex: 1200,00"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="material">Tipo de material</label>
+              <input
+                type="text"
+                id="material"
+                name="material"
+                placeholder="Ex: Produtos eletrônicos"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="estado-origem">Estado de origem</label>
+              <select id="estado-origem" name="estado-origem" required>
+                <option value="">Selecione um estado</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="origem">Cidade de origem</label>
+              <select id="origem" name="origem" required>
+                <option value="">Selecione uma cidade</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="estado-destino">Estado de destino</label>
+              <select id="estado-destino" name="estado-destino" required>
+                <option value="">Selecione um estado</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="destino">Cidade de destino</label>
+              <select id="destino" name="destino" required>
+                <option value="">Selecione uma cidade</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="endereco">Endereço para coleta</label>
+              <input
+                type="text"
+                id="endereco"
+                name="endereco"
+                placeholder="Ex: Rua das Flores, nº 45"
+                required
+              />
+            </div>
+
+            <div class="form-group transporte-group">
+              <label>Tipo de transporte</label>
+              <div class="radio-options">
+                <label for="moto">
+                  <input
+                    type="radio"
+                    id="moto"
+                    name="transporte"
+                    value="moto"
+                    required
+                  />
+                  <span>Moto</span>
+                </label>
+                <label for="carro">
+                  <input
+                    type="radio"
+                    id="carro"
+                    name="transporte"
+                    value="carro"
+                  />
+                  <span>Carro</span>
+                </label>
+                <label for="caminhao">
+                  <input
+                    type="radio"
+                    id="caminhao"
+                    name="transporte"
+                    value="caminhão"
+                  />
+                  <span>Caminhão</span>
+                </label>
+              </div>
+            </div>
+
+            <button type="submit" class="btn-submit">Enviar Orçamento</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>&copy; 2025 Nobre Logistica - Todos os direitos reservados</p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
