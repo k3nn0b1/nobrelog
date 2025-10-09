@@ -61,13 +61,25 @@ document.addEventListener('DOMContentLoaded', function() {
         const estadoOrigemSigla = document.getElementById('estado-origem').value;
         const estadoDestinoSigla = document.getElementById('estado-destino').value;
 
+        // Define o emoji do transporte baseado no tipo
+        let transporteEmoji = '🚚'; // padrão caminhão
+        const transporteLower = transporte.toLowerCase();
+        
+        if (transporteLower.includes('moto')) {
+            transporteEmoji = '🏍️';
+        } else if (transporteLower.includes('carro')) {
+            transporteEmoji = '🚗';
+        } else if (transporteLower.includes('caminhão') || transporteLower.includes('caminhao')) {
+            transporteEmoji = '🚚';
+        }
+
         // Monta a mensagem formatada com cidade - UF
         let message = `*Solicitação de Orçamento NobreLog* 🚛\n\n`;
         message += `📦 *Peso:* ${peso} kg\n`;
         message += `📦 *Quantidade:* ${quantidade} volumes\n`;
         message += `💰 *Valor da Nota:* R$ ${valor}\n`;
         message += `🧱 *Material:* ${material}\n`;
-        message += `🚚 *Tipo de Transporte:* ${transporte}\n\n`;
+        message += `${transporteEmoji} *Tipo de Transporte:* ${transporte}\n\n`;
         message += `🏙️ *Origem:* ${origem} - ${estadoOrigemSigla}\n`;
         message += `🏙️ *Destino:* ${destino} - ${estadoDestinoSigla}\n`;
         message += `📍 *Endereço de Coleta:* ${endereco}`;
