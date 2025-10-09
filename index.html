@@ -78,11 +78,16 @@
               </select>
             </div>
 
-            <div class="form-group">
+            <div class="form-group" style="position: relative;">
               <label for="origem">Cidade de origem</label>
-              <select id="origem" name="origem" required>
-                <option value="">Selecione uma cidade</option>
-              </select>
+              <input 
+                type="text" 
+                id="origem" 
+                name="origem" 
+                placeholder="Selecione o estado primeiro"
+                autocomplete="off"
+                required 
+              />
             </div>
 
             <div class="form-group">
@@ -92,11 +97,16 @@
               </select>
             </div>
 
-            <div class="form-group">
+            <div class="form-group" style="position: relative;">
               <label for="destino">Cidade de destino</label>
-              <select id="destino" name="destino" required>
-                <option value="">Selecione uma cidade</option>
-              </select>
+              <input 
+                type="text" 
+                id="destino" 
+                name="destino" 
+                placeholder="Selecione o estado primeiro"
+                autocomplete="off"
+                required 
+              />
             </div>
 
             <div class="form-group">
@@ -139,59 +149,6 @@
         <p>&copy; 2025 Nobre Logistica - Todos os direitos reservados</p>
       </div>
     </footer>
-
-    <!-- 🔹 Modal de confirmação -->
-    <div id="whatsapp-modal" class="modal">
-      <div class="modal-content">
-        <span id="close-modal">&times;</span>
-        <h2>Confirmação de Envio</h2>
-        <p>Sua solicitação está pronta para ser enviada pelo WhatsApp.</p>
-        <a id="whatsapp-link" href="#" target="_blank" class="btn-whatsapp">Abrir WhatsApp</a>
-      </div>
-    </div>
-
-    <!-- 🔹 Estilo do modal -->
-    <style>
-      .modal {
-        display: none;
-        position: fixed;
-        z-index: 1000;
-        left: 0; top: 0;
-        width: 100%; height: 100%;
-        background-color: rgba(0,0,0,0.6);
-        justify-content: center; align-items: center;
-      }
-      .modal-content {
-        background: #fff;
-        padding: 25px;
-        border-radius: 10px;
-        width: 90%;
-        max-width: 400px;
-        text-align: center;
-        position: relative;
-        box-shadow: 0 0 15px rgba(0,0,0,0.2);
-      }
-      #close-modal {
-        position: absolute;
-        right: 10px; top: 10px;
-        font-size: 22px;
-        cursor: pointer;
-      }
-      .btn-whatsapp {
-        display: inline-block;
-        background-color: #25D366;
-        color: white;
-        padding: 10px 20px;
-        border-radius: 6px;
-        text-decoration: none;
-        font-weight: 600;
-        margin-top: 15px;
-        transition: background 0.3s;
-      }
-      .btn-whatsapp:hover {
-        background-color: #1eb35a;
-      }
-    </style>
 
     <script src="script.js"></script>
   </body>
