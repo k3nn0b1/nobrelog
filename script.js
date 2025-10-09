@@ -56,16 +56,20 @@ document.addEventListener('DOMContentLoaded', function() {
         const destino = document.getElementById('destino').value;
         const endereco = document.getElementById('endereco').value;
         const transporte = document.querySelector('input[name="transporte"]:checked')?.value || 'Não informado';
+        
+        // Pega as siglas dos estados selecionados
+        const estadoOrigemSigla = document.getElementById('estado-origem').value;
+        const estadoDestinoSigla = document.getElementById('estado-destino').value;
 
-        // Monta a mensagem formatada
+        // Monta a mensagem formatada com cidade - UF
         let message = `*Solicitação de Orçamento NobreLog* 🚛\n\n`;
         message += `📦 *Peso:* ${peso} kg\n`;
         message += `📦 *Quantidade:* ${quantidade} volumes\n`;
         message += `💰 *Valor da Nota:* R$ ${valor}\n`;
         message += `🧱 *Material:* ${material}\n`;
         message += `🚚 *Tipo de Transporte:* ${transporte}\n\n`;
-        message += `🏙️ *Origem:* ${origem}\n`;
-        message += `🏙️ *Destino:* ${destino}\n`;
+        message += `🏙️ *Origem:* ${origem} - ${estadoOrigemSigla}\n`;
+        message += `🏙️ *Destino:* ${destino} - ${estadoDestinoSigla}\n`;
         message += `📍 *Endereço de Coleta:* ${endereco}`;
 
         const encodedMessage = encodeURIComponent(message);
