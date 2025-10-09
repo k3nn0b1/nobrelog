@@ -28,6 +28,7 @@
     />
     <link rel="icon" href="favicon.png" type="image/svg+xml" />
   </head>
+
   <body>
     <header>
       <div class="container">
@@ -52,46 +53,22 @@
           <form id="orcamento-form">
             <div class="form-group">
               <label for="peso">Peso da mercadoria (kg)</label>
-              <input
-                type="number"
-                id="peso"
-                name="peso"
-                placeholder="Ex: 30"
-                required
-              />
+              <input type="number" id="peso" name="peso" placeholder="Ex: 30" required />
             </div>
 
             <div class="form-group">
               <label for="quantidade">Quantidade de volumes</label>
-              <input
-                type="number"
-                id="quantidade"
-                name="quantidade"
-                placeholder="Ex: 2"
-                required
-              />
+              <input type="number" id="quantidade" name="quantidade" placeholder="Ex: 2" required />
             </div>
 
             <div class="form-group">
               <label for="valor">Valor da Nota Fiscal (R$)</label>
-              <input
-                type="text"
-                id="valor"
-                name="valor"
-                placeholder="Ex: 1200,00"
-                required
-              />
+              <input type="number" id="valor" name="valor" placeholder="Ex: 1200,00" required />
             </div>
 
             <div class="form-group">
               <label for="material">Tipo de material</label>
-              <input
-                type="text"
-                id="material"
-                name="material"
-                placeholder="Ex: Sapatos e bolsas"
-                required
-              />
+              <input type="text" id="material" name="material" placeholder="Ex: Sapatos e bolsas" required />
             </div>
 
             <div class="form-group">
@@ -137,31 +114,15 @@
               <label>Tipo de transporte</label>
               <div class="radio-options">
                 <label for="moto">
-                  <input
-                    type="radio"
-                    id="moto"
-                    name="transporte"
-                    value="moto"
-                    required
-                  />
+                  <input type="radio" id="moto" name="transporte" value="moto" required />
                   <span>Moto</span>
                 </label>
                 <label for="carro">
-                  <input
-                    type="radio"
-                    id="carro"
-                    name="transporte"
-                    value="carro"
-                  />
+                  <input type="radio" id="carro" name="transporte" value="carro" />
                   <span>Carro</span>
                 </label>
                 <label for="caminhao">
-                  <input
-                    type="radio"
-                    id="caminhao"
-                    name="transporte"
-                    value="caminhão"
-                  />
+                  <input type="radio" id="caminhao" name="transporte" value="caminhão" />
                   <span>Caminhão</span>
                 </label>
               </div>
@@ -178,6 +139,59 @@
         <p>&copy; 2025 Nobre Logistica - Todos os direitos reservados</p>
       </div>
     </footer>
+
+    <!-- 🔹 Modal de confirmação -->
+    <div id="whatsapp-modal" class="modal">
+      <div class="modal-content">
+        <span id="close-modal">&times;</span>
+        <h2>Confirmação de Envio</h2>
+        <p>Sua solicitação está pronta para ser enviada pelo WhatsApp.</p>
+        <a id="whatsapp-link" href="#" target="_blank" class="btn-whatsapp">Abrir WhatsApp</a>
+      </div>
+    </div>
+
+    <!-- 🔹 Estilo do modal -->
+    <style>
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0; top: 0;
+        width: 100%; height: 100%;
+        background-color: rgba(0,0,0,0.6);
+        justify-content: center; align-items: center;
+      }
+      .modal-content {
+        background: #fff;
+        padding: 25px;
+        border-radius: 10px;
+        width: 90%;
+        max-width: 400px;
+        text-align: center;
+        position: relative;
+        box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      }
+      #close-modal {
+        position: absolute;
+        right: 10px; top: 10px;
+        font-size: 22px;
+        cursor: pointer;
+      }
+      .btn-whatsapp {
+        display: inline-block;
+        background-color: #25D366;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: 600;
+        margin-top: 15px;
+        transition: background 0.3s;
+      }
+      .btn-whatsapp:hover {
+        background-color: #1eb35a;
+      }
+    </style>
 
     <script src="script.js"></script>
   </body>
