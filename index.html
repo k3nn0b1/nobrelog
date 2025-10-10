@@ -71,30 +71,27 @@
               <input type="text" id="material" name="material" placeholder="Ex: Sapatos e bolsas" required />
             </div>
 
-            <div class="form-group">
-              <label for="estado-origem">Estado de origem</label>
-              <select id="estado-origem" name="estado-origem" required>
-                <option value="">Selecione um estado</option>
-              </select>
-            </div>
-
             <div class="form-group" style="position: relative;">
               <label for="origem">Cidade de origem</label>
               <input 
                 type="text" 
                 id="origem" 
                 name="origem" 
-                placeholder="Selecione o estado primeiro"
+                placeholder="Digite o nome da cidade"
                 autocomplete="off"
                 required 
               />
             </div>
 
             <div class="form-group">
-              <label for="estado-destino">Estado de destino</label>
-              <select id="estado-destino" name="estado-destino" required>
-                <option value="">Selecione um estado</option>
-              </select>
+              <label for="endereco-coleta">Endereço para coleta</label>
+              <input
+                type="text"
+                id="endereco-coleta"
+                name="endereco-coleta"
+                placeholder="Ex: Rua das Flores, nº 45"
+                required
+              />
             </div>
 
             <div class="form-group" style="position: relative;">
@@ -103,19 +100,19 @@
                 type="text" 
                 id="destino" 
                 name="destino" 
-                placeholder="Selecione o estado primeiro"
+                placeholder="Digite o nome da cidade"
                 autocomplete="off"
                 required 
               />
             </div>
 
             <div class="form-group">
-              <label for="endereco">Endereço para coleta</label>
+              <label for="endereco-destino">Endereço de entrega</label>
               <input
                 type="text"
-                id="endereco"
-                name="endereco"
-                placeholder="Ex: Rua das Flores, nº 45"
+                id="endereco-destino"
+                name="endereco-destino"
+                placeholder="Ex: Avenida Central, nº 123"
                 required
               />
             </div>

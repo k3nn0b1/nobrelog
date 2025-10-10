@@ -2,9 +2,123 @@ document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('orcamento-form');
     const whatsappNumber = '5575981284738';
     
-    // ========== ARRAYS DE CIDADES ==========
-    let cidadesOrigemData = [];
-    let cidadesDestinoData = [];
+    // ========== ROTAS E CIDADES COM PRAZOS ==========
+    const rotasComPrazos = {
+        "Rota 01 (Alagoinhas)": {
+            "prazo": "1 dia útil",
+            "cidades": [
+                "Alagoinhas", "Amélia Rodrigues", "Catu", "Conceição do Jacuípe", "Coração da Maria",
+                "Inhambupe", "Irará", "Ouriçangas", "Pedrão", "Pojuca", "Santanópolis",
+                "Santo Amaro", "São Sebastião do Passé", "Saubara", "Teodoro Sampaio", "Terra Nova"
+            ]
+        },
+        "Rota 02 (Santo Antônio)": {
+            "prazo": "1 dia útil",
+            "cidades": [
+                "Cachoeira", "Conceição da Feira", "Conceição do Almeida", "Cruz das Almas", "Dom Macedo Costa",
+                "Governador Mangabeira", "Muritiba", "Santo Antônio de Jesus", "São Felipe", "São Félix",
+                "São Gonçalo dos Campos", "Sapeaçu", "Varzedo"
+            ]
+        },
+        "Rota 03 (Região Metropolitana)": {
+            "prazo": "1 dia útil",
+            "cidades": [
+                "Camaçari", "Candeias", "Dias D'Ávila", "Madre de Deus", "Mata de São João",
+                "São Francisco do Conde", "Simões Filho"
+            ]
+        },
+        "Rota 04 (Capital)": {
+            "prazo": "1 dia útil",
+            "cidades": ["Lauro de Freitas", "Salvador"]
+        },
+        "Rota 05 (Itabuna)": {
+            "prazo": "4 dias úteis",
+            "cidades": [
+                "Apuarema", "Aratuípe", "Aurelino Leal", "Barra do Rocha", "Camamu", "Coaraci", "Gandu",
+                "Gongogi", "Ibicaraí", "Ibirapitanga", "Ibirataia", "Igrapiúna", "Ilhéus", "Ipiaú",
+                "Itabuna", "Itacaré", "Itagibá", "Itajuípe", "Itamari", "Itapitanga", "Ituberá", "Jaguaripe",
+                "Laje", "Muniz Ferreira", "Nazaré", "Nilo Peçanha", "Piraí do Norte", "Presidente Tancredo Neves",
+                "Taperoá", "Ubaitaba", "Ubatã", "Uruçuca", "Valença", "Wenceslau Guimarães"
+            ]
+        },
+        "Rota 06 (Feira de Santana)": {
+            "prazo": "1 dia útil",
+            "cidades": ["Feira de Santana", "Humildes"]
+        },
+        "Rota 07 (Vitória da Conquista)": {
+            "prazo": "4 dias úteis",
+            "cidades": [
+                "Aiquara", "Amargosa", "Barra do Choça", "Boa Nova", "Brejões", "Caatiba", "Castro Alves",
+                "Cravolândia", "Dário Meira", "Elísio Medrado", "Firmino Alves", "Ibicuí", "Iguaí", "Ipecaetá",
+                "Irajuba", "Itagi", "Itambé", "Itapetinga", "Itaquara", "Itatim", "Itiruçu", "Itororó",
+                "Jaguaquara", "Jequié", "Jequiriça", "Jitaúna", "Manoel Vitorino", "Milagres", "Mutuípe",
+                "Nova Canaã", "Nova Itarana", "Planalto", "Poções", "Santa Inês", "Santa Terezinha",
+                "Santo Estêvão", "Ubaíra", "Vitória da Conquista"
+            ]
+        },
+        "Rota 08 (Juazeiro)": {
+            "prazo": "4 dias úteis",
+            "cidades": [
+                "Antônio Gonçalves", "Campo Formoso", "Candeal", "Cansanção", "Capela do Alto Alegre",
+                "Capim Grosso", "Conceição do Coité", "Filadélfia", "Gavião", "Ichu", "Itiúba", "Jaguarari",
+                "Juazeiro", "Massaroca", "Monte Santo", "Nordestina", "Nova Fátima", "Pé de Serra", "Petrolina",
+                "Pindobaçu", "Ponto Novo", "Queimadas", "Retirolândia", "Riachão do Jacuípe", "Salgadália",
+                "Santaluz", "Senhor do Bonfim", "Tanquinho", "Valente"
+            ]
+        },
+        "Rota 09 (Paulo Afonso)": {
+            "prazo": "4 dias úteis",
+            "cidades": [
+                "Adustina", "Antas", "Araci", "Barrocas", "Biritinga", "Caldas do Jorro", "Canudos",
+                "Cícero Dantas", "Cipó", "Coronel João Sá", "Euclides da Cunha", "Fátima", "Glória", "Jeremoabo",
+                "Nova Soure", "Novo Triunfo", "Olindina", "Paripiranga", "Paulo Afonso", "Ribeira do Amparo",
+                "Ribeira do Pombal", "Santa Bárbara", "Santa Brígida", "São Domingos", "Serrinha",
+                "Sítio do Quinto", "Teofilândia", "Tucano", "Uauá"
+            ]
+        },
+        "Rota 10 (Ilha)": {
+            "prazo": "4 dias úteis",
+            "cidades": ["Itaparica", "Maragogipe", "Salinas das Margaridas", "Vera Cruz"]
+        },
+        "Rota 11 (Irecê)": {
+            "prazo": "4 dias úteis",
+            "cidades": [
+                "América Dourada", "Andaraí", "Anguera", "Baixa Grande", "Barra do Mendes", "Boa Vista do Tupim",
+                "Bravo", "Cafarnaum", "Canarana", "Central", "Gentio do Ouro", "Iaçu", "Ibipeba", "Ibiquera",
+                "Ibititá", "Ipirá", "Iraquara", "Irecê", "Itaberaba", "Itaetê", "Jacobina", "João Dourado",
+                "Jussara", "Lapão", "Lençóis", "Macionílio Souza", "Mairi", "Miguel Calmon", "Morro do Chapéu",
+                "Mucugê", "Mulungu do Morro", "Mundo Novo", "Pintadas", "Piritiba", "Presidente Dutra",
+                "Ruy Barbosa", "São Gabriel", "Seabra", "Serra Preta", "Tapiramutá", "Uibaí", "Várzea da Roça"
+            ]
+        }
+    };
+    
+    // Criar array unificado de cidades com seus prazos
+    let todasCidades = [];
+    Object.keys(rotasComPrazos).forEach(rota => {
+        const info = rotasComPrazos[rota];
+        info.cidades.forEach(cidade => {
+            todasCidades.push({
+                nome: cidade,
+                rota: rota,
+                prazo: info.prazo,
+                displayText: cidade
+            });
+        });
+    });
+    
+    // Ordenar alfabeticamente
+    todasCidades.sort((a, b) => a.nome.localeCompare(b.nome));
+    
+    console.log(`✅ ${todasCidades.length} cidades carregadas com prazos!`);
+    
+    // ========== BUSCAR PRAZO DE UMA CIDADE ==========
+    function buscarPrazo(nomeCidade) {
+        const cidade = todasCidades.find(c => 
+            c.nome.toLowerCase() === nomeCidade.toLowerCase()
+        );
+        return cidade ? cidade.prazo : 'Não disponível';
+    }
     
     form.addEventListener('submit', function(e) {
         e.preventDefault();
@@ -26,21 +140,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 removeError(input);
             }
         });
-        
-        const estadoOrigem = document.getElementById('estado-origem');
-        const cidadeOrigem = document.getElementById('origem');
-        const estadoDestino = document.getElementById('estado-destino');
-        const cidadeDestino = document.getElementById('destino');
-        
-        if (cidadeOrigem.value && !estadoOrigem.value) {
-            isValid = false;
-            showError(estadoOrigem, 'Selecione o estado primeiro');
-        }
-        
-        if (cidadeDestino.value && !estadoDestino.value) {
-            isValid = false;
-            showError(estadoDestino, 'Selecione o estado primeiro');
-        }
         
         return isValid;
     }
@@ -73,11 +172,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const material = document.getElementById('material').value;
         const origem = document.getElementById('origem').value;
         const destino = document.getElementById('destino').value;
-        const endereco = document.getElementById('endereco').value;
+        const enderecoColeta = document.getElementById('endereco-coleta').value;
+        const enderecoDestino = document.getElementById('endereco-destino').value;
         const transporte = document.querySelector('input[name="transporte"]:checked')?.value || 'Não informado';
-        
-        const estadoOrigemSigla = document.getElementById('estado-origem').value;
-        const estadoDestinoSigla = document.getElementById('estado-destino').value;
+
+        // Buscar prazo do destino
+        const prazoEntrega = buscarPrazo(destino);
 
         let transporteEmoji = '🚚';
         const transporteLower = transporte.toLowerCase();
@@ -96,24 +196,27 @@ document.addEventListener('DOMContentLoaded', function() {
         message += `💰 *Valor da Nota:* R$ ${valor}\n`;
         message += `🧱 *Material:* ${material}\n`;
         message += `${transporteEmoji} *Tipo de Transporte:* ${transporte}\n\n`;
-        message += `🏙️ *Origem:* ${origem} - ${estadoOrigemSigla}\n`;
-        message += `🏙️ *Destino:* ${destino} - ${estadoDestinoSigla}\n`;
-        message += `📍 *Endereço de Coleta:* ${endereco}`;
+        message += `🏙️ *Origem:* ${origem}\n`;
+        message += `📍 *Endereço de Coleta:* ${enderecoColeta}\n\n`;
+        message += `🏙️ *Destino:* ${destino}\n`;
+        message += `📍 *Endereço de Entrega:* ${enderecoDestino}\n`;
+        message += `⏱️ *Prazo de Entrega:* ${prazoEntrega}`;
 
         const encodedMessage = encodeURIComponent(message);
         const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
         
-        showModal(whatsappUrl);
+        showModal(whatsappUrl, prazoEntrega);
     }
 
     // ========== MODAL DE REDIRECIONAMENTO ==========
-    function showModal(url) {
+    function showModal(url, prazo) {
         const modal = document.createElement('div');
         modal.className = 'modal-redirect';
         modal.innerHTML = `
             <div class="modal-content-redirect">
                 <div class="modal-icon">📱</div>
                 <h3>Redirecionando para o WhatsApp</h3>
+                <p>Prazo de entrega: <strong>${prazo}</strong></p>
                 <p>Você será redirecionado para concluir o envio do seu orçamento...</p>
                 <div class="loading-bar">
                     <div class="loading-progress"></div>
@@ -183,8 +286,13 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             .modal-content-redirect p {
                 color: rgba(255, 255, 255, 0.9);
-                margin: 0 0 25px 0;
+                margin: 0 0 15px 0;
                 font-size: 14px;
+            }
+            .modal-content-redirect p strong {
+                color: white;
+                font-weight: 600;
+                font-size: 16px;
             }
             .loading-bar {
                 width: 100%;
@@ -206,91 +314,77 @@ document.addEventListener('DOMContentLoaded', function() {
             .autocomplete-list {
                 position: absolute;
                 background: white;
-                border: 1px solid #ddd;
+                border: 1px solid #e0e0e0;
                 border-top: none;
                 z-index: 99;
-                max-height: 200px;
+                max-height: 280px;
                 overflow-y: auto;
                 width: 100%;
-                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
                 border-radius: 0 0 8px 8px;
+                top: 100%;
+                left: 0;
             }
             .autocomplete-item {
-                padding: 12px;
+                padding: 14px 16px;
                 cursor: pointer;
-                border-bottom: 1px solid #f0f0f0;
-                transition: background 0.2s;
+                border-bottom: 1px solid #f5f5f5;
+                transition: background 0.2s ease;
+            }
+            .autocomplete-item:last-child {
+                border-bottom: none;
             }
             .autocomplete-item:hover {
-                background-color: #f0f0f0;
+                background-color: #f8f9fa;
             }
             .autocomplete-item.active {
-                background-color: #0047AB;
-                color: white;
+                background-color: #f0f4ff;
             }
             .autocomplete-item.no-results {
                 color: #999;
                 cursor: default;
+                justify-content: center;
+            }
+            .cidade-info {
+                display: flex;
+                flex-direction: column;
+                text-align: left;
+            }
+            .cidade-nome {
+                font-weight: 500;
+                color: #333;
+                font-size: 15px;
+                line-height: 1.3;
+            }
+            .prazo-info {
+                color: #0047AB;
+                font-size: 12px;
+                margin-top: 2px;
+                font-weight: 500;
+            }
+            .prazo-badge {
+                display: inline-block;
+                margin-top: 4px;
+                padding: 2px 8px;
+                background-color: #e8f4fd;
+                color: #0047AB;
+                border-radius: 4px;
+                font-size: 11px;
+                font-weight: 600;
             }
         `;
         document.head.appendChild(style);
     }
     
-    // ========== CARREGAMENTO DE ESTADOS ==========
-    const estadoOrigem = document.getElementById("estado-origem");
-    const cidadeOrigem = document.getElementById("origem");
-    const estadoDestino = document.getElementById("estado-destino");
-    const cidadeDestino = document.getElementById("destino");
-    
-    async function carregarEstados(selectEstado) {
-        try {
-            const response = await fetch("https://servicodados.ibge.gov.br/api/v1/localidades/estados");
-            const estados = await response.json();
-            estados.sort((a, b) => a.nome.localeCompare(b.nome));
-            estados.forEach(estado => {
-                const option = document.createElement("option");
-                option.value = estado.sigla;
-                option.textContent = estado.nome;
-                selectEstado.appendChild(option);
-            });
-        } catch (error) {
-            console.error('Erro ao carregar estados:', error);
-        }
-    }
-    
-    async function carregarCidades(sigla, inputCidade, dataArray) {
-        try {
-            inputCidade.value = 'Carregando...';
-            inputCidade.disabled = true;
-            
-            const response = await fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${sigla}/municipios`);
-            const cidades = await response.json();
-            
-            dataArray.length = 0;
-            dataArray.push(...cidades);
-            
-            inputCidade.value = '';
-            inputCidade.placeholder = 'Digite o nome da cidade';
-            inputCidade.disabled = false;
-            inputCidade.focus();
-            
-        } catch (error) {
-            console.error('Erro ao carregar cidades:', error);
-            inputCidade.value = '';
-            inputCidade.placeholder = 'Erro ao carregar';
-            inputCidade.disabled = true;
-        }
-    }
-    
-    // ========== AUTOCOMPLETE ==========
-    function configurarAutocomplete(input, dataArray) {
+    // ========== AUTOCOMPLETE PARA CIDADES ==========
+    function configurarAutocomplete(input) {
         let currentFocus = -1;
         
         input.addEventListener('input', function() {
             const val = this.value.trim();
             fecharListas();
             
-            if (!val) return false;
+            if (!val || val.length < 2) return false;
             
             currentFocus = -1;
             
@@ -299,9 +393,11 @@ document.addEventListener('DOMContentLoaded', function() {
             listDiv.id = this.id + '-autocomplete-list';
             this.parentNode.appendChild(listDiv);
             
-            const cidadesFiltradas = dataArray.filter(cidade => 
-                cidade.nome.toLowerCase().includes(val.toLowerCase())
-            ).slice(0, 10);
+            const cidadesFiltradas = todasCidades.filter(cidade => 
+                cidade.nome.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "").includes(
+                    val.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "")
+                )
+            ).slice(0, 15);
             
             if (cidadesFiltradas.length === 0) {
                 const item = document.createElement('div');
@@ -314,10 +410,21 @@ document.addEventListener('DOMContentLoaded', function() {
             cidadesFiltradas.forEach(cidade => {
                 const item = document.createElement('div');
                 item.className = 'autocomplete-item';
-                item.innerHTML = cidade.nome;
+                
+                // Verifica se é o campo de destino para mostrar o prazo
+                const isDestino = input.id === 'destino';
+                
+                item.innerHTML = `
+                    <div class="cidade-info">
+                        <div class="cidade-nome">${cidade.nome}</div>
+                        ${isDestino ? `<span class="prazo-badge">⏱️ ${cidade.prazo}</span>` : ''}
+                    </div>
+                `;
                 
                 item.addEventListener('click', function() {
-                    input.value = cidade.nome;
+                    input.value = cidade.displayText;
+                    input.dataset.cidade = cidade.nome;
+                    input.dataset.prazo = cidade.prazo;
                     fecharListas();
                 });
                 
@@ -350,6 +457,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (currentFocus < 0) currentFocus = lista.length - 1;
             if (!lista[currentFocus].classList.contains('no-results')) {
                 lista[currentFocus].classList.add('active');
+                lista[currentFocus].scrollIntoView({ block: 'nearest', behavior: 'smooth' });
             }
         }
         
@@ -373,52 +481,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // ========== EVENTOS DE MUDANÇA DE ESTADO ==========
-    estadoOrigem.addEventListener("change", () => {
-        cidadeOrigem.value = '';
-        if (estadoOrigem.value) {
-            carregarCidades(estadoOrigem.value, cidadeOrigem, cidadesOrigemData);
-        } else {
-            cidadeOrigem.placeholder = 'Selecione o estado primeiro';
-            cidadeOrigem.disabled = true;
-        }
-    });
-    
-    estadoDestino.addEventListener("change", () => {
-        cidadeDestino.value = '';
-        if (estadoDestino.value) {
-            carregarCidades(estadoDestino.value, cidadeDestino, cidadesDestinoData);
-        } else {
-            cidadeDestino.placeholder = 'Selecione o estado primeiro';
-            cidadeDestino.disabled = true;
-        }
-    });
-    
-    // Bloqueia cidade se não tiver estado selecionado
-    cidadeOrigem.addEventListener('focus', function() {
-        if (!estadoOrigem.value) {
-            this.blur();
-            alert('Por favor, selecione o estado de origem primeiro!');
-            estadoOrigem.focus();
-        }
-    });
-    
-    cidadeDestino.addEventListener('focus', function() {
-        if (!estadoDestino.value) {
-            this.blur();
-            alert('Por favor, selecione o estado de destino primeiro!');
-            estadoDestino.focus();
-        }
-    });
-    
     // ========== INICIALIZAÇÃO ==========
-    carregarEstados(estadoOrigem);
-    carregarEstados(estadoDestino);
-    cidadeOrigem.disabled = true;
-    cidadeDestino.disabled = true;
-    cidadeOrigem.placeholder = 'Selecione o estado primeiro';
-    cidadeDestino.placeholder = 'Selecione o estado primeiro';
+    const cidadeOrigem = document.getElementById("origem");
+    const cidadeDestino = document.getElementById("destino");
     
-    configurarAutocomplete(cidadeOrigem, cidadesOrigemData);
-    configurarAutocomplete(cidadeDestino, cidadesDestinoData);
+    if (cidadeOrigem && cidadeDestino) {
+        configurarAutocomplete(cidadeOrigem);
+        configurarAutocomplete(cidadeDestino);
+    } else {
+        console.error('Campos de cidade não encontrados no HTML!');
+    }
 });
